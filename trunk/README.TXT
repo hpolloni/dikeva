@@ -10,7 +10,7 @@ Usage
 -----
 To start a server, you'll need the following command:
 
-$> python (PATH_TO_DIKEVA)/server.py
+$> python (PATH_TO_DIKEVA)/run_server.py --config=config.cfg
 
 
 Python Client API
