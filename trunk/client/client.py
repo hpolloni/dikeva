@@ -2,6 +2,7 @@ import asyncore, socket
 import urllib
 import pickle
 import md5
+import types
 
 # need to replace this with consistent hash
 def dkv_choose(key, buckets):
@@ -10,7 +11,11 @@ def dkv_choose(key, buckets):
 	return (hash_value % buckets)
 
 def dkv_encode(data):
-	return urllib.quote(pickle.dumps(data))
+	try:
+		real_data = data.__dict__
+	except AttributeError:
+		real_data = data
+	return urllib.quote(pickle.dumps(real_data))
 
 def dkv_decode(s):
 	return pickle.loads(urllib.unquote(s))
@@ -18,7 +23,6 @@ def dkv_decode(s):
 # state = 1 : sending command
 # state = 2 : sending done, receiving
 # if receiving done, send the other command (state = 1) (or close if no more commands)
-
 class DkvNetClient(asyncore.dispatcher):
 	def __init__(self, addr, commands):
 		asyncore.dispatcher.__init__(self)
