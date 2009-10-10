@@ -43,7 +43,7 @@ class DkvNetHandler(asyncore.dispatcher):
 		self.outbuffer = "OK\n"
 
 	def handle_close(self):
-		dkv_debug('Disconnected from %s' % self.getpeername())
+		dkv_debug('Disconnected from %s' % (str(self.getpeername())))
 		self.close()
 
 	def writable(self):
@@ -77,7 +77,7 @@ class DkvServer(asyncore.dispatcher):
 		channel, addr = self.accept()
 		dkv_debug('Incoming connection from %s' % str(addr))
 		DkvNetHandler(channel)
-	
+
 	def clean(self):
 		self.close()
 		global DATA_STORE
