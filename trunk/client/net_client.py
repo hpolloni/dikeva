@@ -1,6 +1,6 @@
 import asyncore, socket
 
-#asyncore.loop()
+# TODO: better error handling
 
 # state = 1 : sending command
 # state = 2 : sending done, receiving

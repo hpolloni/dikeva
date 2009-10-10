@@ -9,8 +9,13 @@ except ImportError:
 class DkvHashTable:
 	def __init__(self):
 		self.nodes = []
-	def add(self, key):
-		self.nodes.append(key)
+
+	def add(self, addr):
+		self.nodes.append(addr)
+
+	def remove(self, addr):
+		self.nodes.remove(addr)
+
 	def get(self, key):
 		m = md5_new(key)
 		hash_value = long(m.hexdigest(), 16)
