@@ -8,6 +8,7 @@ class DkvClient:
 		self.servers = HashTable()
 
 	def add_server(self, addr):
+		# check that addr is a tuple
 		self.servers.add(addr)
 
 	def encode(self, data):
